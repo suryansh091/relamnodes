@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Hosting Plans - Zyro Cloud</title>
+  <link rel="icon" type="image/png" href="https://zyrocloud.site/favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --text: #ffffff;
+      --muted: #b8bfd8;
+      --primary1: #7b4dff;
+      --primary2: #17c8ff;
+      --glow2: rgba(23, 200, 255, 0.22);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(123, 77, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(23, 200, 255, 0.14), transparent 25%),
+        radial-gradient(circle at bottom left, rgba(123, 77, 255, 0.10), transparent 25%),
+        linear-gradient(180deg, #02030a 0%, #03040b 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.15));
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .plans-page {
+      max-width: 1280px;
+      margin: auto;
+      padding: 70px 24px 90px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 38px 34px;
+      background: linear-gradient(180deg, rgba(12,16,34,0.82), rgba(8,12,26,0.92));
+      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+      margin-bottom: 40px;
+    }
+
+    .hero-box::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(23,200,255,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      bottom: -120px;
+      left: -80px;
+      background: radial-gradient(circle, rgba(123,77,255,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #dbe5ff;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-box h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      max-width: 900px;
+    }
+
+    .hero-box h1 span {
+      background: linear-gradient(90deg, var(--primary1), var(--primary2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-box p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 780px;
+      line-height: 1.9;
+    }
+
+    .stats-row {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 20px;
+      backdrop-filter: blur(14px);
+    }
+
+    .stat-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: #f5f7ff;
+    }
+
+    .stat-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .section-head {
+      margin: 8px 0 28px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 span {
+      background: linear-gradient(90deg, var(--primary1), var(--primary2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-head p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.97rem;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .plan-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(15, 19, 40, 0.92), rgba(8, 12, 26, 0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 26px;
+      padding: 26px 22px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .plan-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 26px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(123, 77, 255, 0.34), rgba(23, 200, 255, 0.18), transparent 72%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .plan-card::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      top: -70px;
+      right: -60px;
+      background: radial-gradient(circle, var(--glow2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(23, 200, 255, 0.24);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.36);
+    }
+
+    .plan-card.popular {
+      border-color: rgba(123, 77, 255, 0.45);
+      box-shadow: 0 0 26px rgba(123, 77, 255, 0.14);
+    }
+
+    .plan-label {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #7b4dff, #17c8ff);
+    }
+
+    .plan-card.popular .plan-label {
+      background: linear-gradient(90deg, #17c8ff, #7b4dff);
+    }
+
+    .plan-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .plan-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      min-height: 48px;
+    }
+
+    .plan-price {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .plan-price span {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-left: 4px;
+      font-weight: 500;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+
+    .plan-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .plan-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--primary1), var(--primary2));
+      box-shadow: 0 10px 25px rgba(123, 77, 255, 0.22);
+      transition: 0.3s ease;
+    }
+
+    .plan-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(23, 200, 255, 0.2);
+    }
+
+    .bottom-note {
+      text-align: center;
+      margin-top: 38px;
+      color: #8d96b8;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1100px) {
+      .plans-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .plans-page {
+        padding: 50px 16px 70px;
+      }
+
+      .hero-box {
+        padding: 28px 20px;
+        border-radius: 24px;
+      }
+
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-box p,
+      .section-head p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-content">
+    <div id="navbar"></div>
+
+    <script>
+      fetch("navbar.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+
+    <section class="plans-page">
+      <div class="hero-box">
+        <div class="hero-badge">🌐 Premium Web Hosting</div>
+        <h1>Web <span>Hosting Plans</span></h1>
+        <p>
+          Fast and reliable web hosting plans built for portfolios, landing pages, business sites,
+          client websites, and modern web applications with stable uptime and smooth performance.
+        </p>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <h3>Fast Loading</h3>
+            <p>Optimized performance for smooth website loading, stable access, and better user experience.</p>
+          </div>
+          <div class="stat-card">
+            <h3>Secure Hosting</h3>
+            <p>Reliable environment for personal sites, client projects, landing pages, and production websites.</p>
+          </div>
+          <div class="stat-card">
+            <h3>Easy Scaling</h3>
+            <p>Start with a smaller plan and upgrade as your site traffic, features, and storage needs grow.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <h2>Choose Your <span>Web Hosting Plan</span></h2>
+        <p>
+          Pick the ideal web hosting plan based on your website size, storage needs, and expected traffic.
+        </p>
+      </div>
+
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Starter Web</h3>
+          <p class="plan-desc">Best for simple portfolios, personal pages, and lightweight static websites.</p>
+          <div class="plan-price">₹30<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>1 Website</li>
+            <li>5 GB SSD Storage</li>
+            <li>1 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Basic Web</h3>
+          <p class="plan-desc">Good for landing pages, blogs, and small websites with moderate traffic.</p>
+          <div class="plan-price">₹60<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>2 Websites</li>
+            <li>10 GB SSD Storage</li>
+            <li>2 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Standard Web</h3>
+          <p class="plan-desc">Great for business sites, client pages, and content-focused websites.</p>
+          <div class="plan-price">₹100<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>5 Websites</li>
+            <li>20 GB SSD Storage</li>
+            <li>4 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Advanced Web</h3>
+          <p class="plan-desc">Better for dynamic sites, bigger pages, and projects with growing traffic.</p>
+          <div class="plan-price">₹150<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>10 Websites</li>
+            <li>30 GB SSD Storage</li>
+            <li>6 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card popular">
+          <div class="plan-label">Popular</div>
+          <h3>Pro Web</h3>
+          <p class="plan-desc">Best for active business sites, modern client projects, and web apps.</p>
+          <div class="plan-price">₹220<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>20 Websites</li>
+            <li>50 GB SSD Storage</li>
+            <li>8 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Premium Web</h3>
+          <p class="plan-desc">Strong option for heavier sites, client dashboards, and advanced projects.</p>
+          <div class="plan-price">₹320<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>30 Websites</li>
+            <li>80 GB SSD Storage</li>
+            <li>12 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Business Web</h3>
+          <p class="plan-desc">Built for larger business sites, agency hosting, and serious web workloads.</p>
+          <div class="plan-price">₹450<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>50 Websites</li>
+            <li>120 GB SSD Storage</li>
+            <li>16 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Enterprise Web</h3>
+          <p class="plan-desc">High resource hosting for agencies, multi-site projects, and bigger deployments.</p>
+          <div class="plan-price">₹700<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>100 Websites</li>
+            <li>180 GB SSD Storage</li>
+            <li>24 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">Web Hosting</div>
+          <h3>Ultimate Web</h3>
+          <p class="plan-desc">Top-tier web hosting for high traffic sites, large projects, and premium clients.</p>
+          <div class="plan-price">₹1000<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>Unlimited Websites</li>
+            <li>250 GB SSD Storage</li>
+            <li>32 GB RAM</li>
+          </ul>
+          <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+      </div>
+
+      <div class="bottom-note">
+        Need a custom web hosting setup? Join our Discord and get a plan tailored for your website or project.
+      </div>
+      <div id="footer"></div>
+    </section>
+  </div>
+    
+    <script>
+fetch("footer.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+    
+</body>
+</html>

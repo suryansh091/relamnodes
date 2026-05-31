@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMD Minecraft Plans - Zyro Cloud</title>
+  <link rel="icon" type="image/png" href="https://zyrocloud.site/favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #03040a;
+      --card: rgba(12, 16, 34, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #b8bfd8;
+      --primary1: #7b4dff;
+      --primary2: #17c8ff;
+      --amd1: #7c3aed;
+      --amd2: #ec4899;
+      --glow: rgba(123, 77, 255, 0.35);
+      --glow2: rgba(236, 72, 153, 0.20);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(123, 77, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(23, 200, 255, 0.14), transparent 25%),
+        radial-gradient(circle at bottom left, rgba(123, 77, 255, 0.10), transparent 25%),
+        linear-gradient(180deg, #02030a 0%, #03040b 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.15));
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .plans-page {
+      max-width: 1280px;
+      margin: auto;
+      padding: 70px 24px 90px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 38px 34px;
+      background: linear-gradient(180deg, rgba(12,16,34,0.82), rgba(8,12,26,0.92));
+      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+      margin-bottom: 40px;
+    }
+
+    .hero-box::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(236,72,153,0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      bottom: -120px;
+      left: -80px;
+      background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #dbe5ff;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-box h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      max-width: 900px;
+    }
+
+    .hero-box h1 span {
+      background: linear-gradient(90deg, var(--amd1), var(--amd2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-box p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 780px;
+      line-height: 1.9;
+    }
+
+    .stats-row {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 20px;
+      backdrop-filter: blur(14px);
+    }
+
+    .stat-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: #f5f7ff;
+    }
+
+    .stat-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .section-head {
+      margin: 8px 0 28px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 span {
+      background: linear-gradient(90deg, var(--amd1), var(--amd2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-head p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.97rem;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .plan-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(15, 19, 40, 0.92), rgba(8, 12, 26, 0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 26px;
+      padding: 26px 22px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .plan-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 26px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.34), rgba(236,72,153,0.18), transparent 72%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .plan-card::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      top: -70px;
+      right: -60px;
+      background: radial-gradient(circle, var(--glow2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(236,72,153,0.24);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.36);
+    }
+
+    .plan-card.popular {
+      border-color: rgba(236,72,153,0.42);
+      box-shadow: 0 0 26px rgba(236,72,153,0.14);
+    }
+
+    .plan-label {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--amd1), var(--amd2));
+    }
+
+    .plan-card.popular .plan-label {
+      background: linear-gradient(90deg, #ec4899, #17c8ff);
+    }
+
+    .plan-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .plan-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      min-height: 48px;
+    }
+
+    .plan-price {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .plan-price span {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-left: 4px;
+      font-weight: 500;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+
+    .plan-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .plan-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--amd1), var(--amd2));
+      box-shadow: 0 10px 25px rgba(236,72,153,0.18);
+      transition: 0.3s ease;
+    }
+
+    .plan-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(236,72,153,0.18);
+    }
+
+    .bottom-note {
+      text-align: center;
+      margin-top: 38px;
+      color: #8d96b8;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1100px) {
+      .plans-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .plans-page {
+        padding: 50px 16px 70px;
+      }
+
+      .hero-box {
+        padding: 28px 20px;
+        border-radius: 24px;
+      }
+
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-box p,
+      .section-head p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-content">
+    <div id="navbar"></div>
+
+    <script>
+      fetch("navbar.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+
+    <section class="plans-page">
+      <div class="hero-box">
+        <div class="hero-badge">🔥 AMD Powered Minecraft Hosting</div>
+        <h1>AMD <span>Minecraft Plans</span></h1>
+        <p>
+          Premium AMD-based Minecraft hosting plans built for faster processing, smooth gameplay,
+          stable uptime, and strong performance for SMP, Lifesteal, Survival, and plugin-heavy servers.
+        </p>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <h3>Fast AMD Performance</h3>
+            <p>Excellent performance for Minecraft servers with strong speed, responsive gameplay, and smooth operation.</p>
+          </div>
+          <div class="stat-card">
+            <h3>Built for Growth</h3>
+            <p>Start with a small plan and scale up as your community, player count, and plugin usage increase.</p>
+          </div>
+          <div class="stat-card">
+            <h3>Premium Hosting Feel</h3>
+            <p>Modern plans designed for communities, creators, public SMPs, and performance-focused Minecraft hosting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <h2>Choose Your <span>AMD Plan</span></h2>
+        <p>
+          Pick the RAM size that matches your Minecraft server type, workload, player activity, and plugin setup.
+        </p>
+      </div>
+
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Dirt Plan</h3>
+          <p class="plan-desc">Starter plan for testing and very small private Minecraft servers.</p>
+          <div class="plan-price">₹20<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>1 GB RAM</li>
+            <li>50% CPU</li>
+            <li>5 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Stone Plan</h3>
+          <p class="plan-desc">Good for basic survival gameplay and small friends-only servers.</p>
+          <div class="plan-price">₹40<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>2 GB RAM</li>
+            <li>100% CPU</li>
+            <li>10 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Coal Plan</h3>
+          <p class="plan-desc">Smooth plan for plugins, small SMP servers, and stable daily use.</p>
+          <div class="plan-price">₹80<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>4 GB RAM</li>
+            <li>200% CPU</li>
+            <li>20 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Iron Plan</h3>
+          <p class="plan-desc">Better for medium SMP communities and more demanding plugin usage.</p>
+          <div class="plan-price">₹120<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>6 GB RAM</li>
+            <li>300% CPU</li>
+            <li>25 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card popular">
+          <div class="plan-label">Popular</div>
+          <h3>Redstone Plan</h3>
+          <p class="plan-desc">Best for Lifesteal, survival, active SMP communities, and smooth plugin performance.</p>
+          <div class="plan-price">₹160<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>8 GB RAM</li>
+            <li>400% CPU</li>
+            <li>30 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Gold Plan</h3>
+          <p class="plan-desc">Strong option for heavy plugins, bigger player counts, and demanding servers.</p>
+          <div class="plan-price">₹240<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>12 GB RAM</li>
+            <li>450% CPU</li>
+            <li>35 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Emerald Plan</h3>
+          <p class="plan-desc">Perfect for larger communities, custom worlds, and advanced server setups.</p>
+          <div class="plan-price">₹320<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>16 GB RAM</li>
+            <li>500% CPU</li>
+            <li>40 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Diamond Plan</h3>
+          <p class="plan-desc">High performance for large Minecraft communities and advanced workloads.</p>
+          <div class="plan-price">₹640<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>32 GB RAM</li>
+            <li>700% CPU</li>
+            <li>60 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-label">AMD</div>
+          <h3>Netherite Plan</h3>
+          <p class="plan-desc">Enterprise-level AMD hosting for major communities and large-scale server networks.</p>
+          <div class="plan-price">₹1280<span>/mo</span></div>
+          <ul class="plan-features">
+            <li>64 GB RAM</li>
+            <li>1200% CPU</li>
+            <li>100 GB SSD Storage</li>
+          </ul>
+          <a href="https://billing.zyrocloud.site" target="_blank" class="plan-btn">Order Now</a>
+        </div>
+      </div>
+
+      <div class="bottom-note">
+        Need a custom AMD configuration or a higher resource plan? Join our Discord and get a plan tailored for your Minecraft server.
+      </div>
+      <div id="footer"></div>
+    </section>
+  </div>
+  
+    <script>
+fetch("footer.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+    
+</body>
+</html>

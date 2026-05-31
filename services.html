@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services - Zyro Cloud</title>
+  <link rel="icon" type="image/png" href="https://zyrocloud.site/favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #03040a;
+      --card: rgba(12, 16, 34, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #b8bfd8;
+      --primary1: #7b4dff;
+      --primary2: #17c8ff;
+      --glow: rgba(123, 77, 255, 0.35);
+      --glow2: rgba(23, 200, 255, 0.25);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(123, 77, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(23, 200, 255, 0.14), transparent 25%),
+        radial-gradient(circle at bottom left, rgba(123, 77, 255, 0.1), transparent 25%),
+        linear-gradient(180deg, #02030a 0%, #03040b 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      animation: pageEnter 0.8s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.15));
+    }
+
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(123, 77, 255, 0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(23, 200, 255, 0.18), transparent 28%),
+        linear-gradient(180deg, #02030a 0%, #050816 100%);
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .page-transition.loaded {
+      opacity: 0;
+      transform: scale(1.03);
+    }
+
+    body.page-exit {
+      overflow: hidden;
+    }
+
+    body.page-exit .page-transition {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+      animation: contentFade 0.9s ease;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      background: rgba(5, 7, 16, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0a0d18, #11182c);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 18px rgba(123, 77, 255, 0.15);
+    }
+
+    .brand-logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: white;
+      transform: skew(-12deg);
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #e9ecff;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.98rem;
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, var(--primary1), var(--primary2));
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .discord-btn {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, var(--primary1), var(--primary2));
+      box-shadow: 0 10px 25px rgba(123, 77, 255, 0.24);
+      transition: 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .discord-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(23, 200, 255, 0.2);
+    }
+
+    .services-section {
+      max-width: 1280px;
+      margin: auto;
+      padding: 70px 24px 80px;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeUp 0.8s ease;
+    }
+
+    .services-header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .services-header h1 span {
+      background: linear-gradient(90deg, var(--primary1), var(--primary2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .services-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 92px;
+      background: rgba(8, 12, 26, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.28);
+      animation: fadeLeft 0.8s ease;
+    }
+
+    .sidebar h3 {
+      font-size: 1rem;
+      margin-bottom: 16px;
+      color: #e8ecff;
+      font-weight: 600;
+    }
+
+    .category-btn,
+    .sub-category-btn {
+      display: inline-block;
+      text-decoration: none;
+      width: 100%;
+      font-size: 0.88rem;
+      padding: 11px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eef2ff;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: 0.25s ease;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .category-btn:hover,
+    .sub-category-btn:hover {
+      transform: translateX(4px);
+      border-color: rgba(23, 200, 255, 0.35);
+      box-shadow: 0 0 18px rgba(23, 200, 255, 0.08);
+    }
+
+    .category-btn.active,
+    .sub-category-btn.active {
+      background: linear-gradient(90deg, rgba(123, 77, 255, 0.18), rgba(23, 200, 255, 0.14));
+      border-color: rgba(23, 200, 255, 0.28);
+      box-shadow: 0 0 18px rgba(123, 77, 255, 0.1);
+    }
+
+    .sub-category-box {
+      display: none;
+      margin: -4px 0 12px 0;
+      padding-left: 10px;
+      animation: fadeDown 0.35s ease;
+    }
+
+    .sub-category-box.show {
+      display: block;
+    }
+
+    .sub-category-btn {
+      font-size: 0.88rem;
+      padding: 11px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .services-content {
+      animation: fadeUp 0.8s ease;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(15, 19, 40, 0.88), rgba(8, 12, 26, 0.92));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px 22px;
+      min-height: 230px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(123, 77, 255, 0.4), rgba(23, 200, 255, 0.18), transparent 70%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      top: -70px;
+      background: radial-gradient(circle, var(--glow2), transparent 65%);
+      pointer-events: none;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(23, 200, 255, 0.25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.36), 0 0 28px rgba(123, 77, 255, 0.12);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.25rem;
+      color: white;
+      background: linear-gradient(135deg, rgba(123, 77, 255, 0.95), rgba(23, 200, 255, 0.95));
+      box-shadow: 0 10px 28px var(--glow);
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      color: #ffffff;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .service-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      color: #eff3ff;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(10, 14, 28, 0.75);
+      color: var(--muted);
+    }
+
+    .empty-state.show {
+      display: block;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 40px;
+      color: #8992b3;
+      font-size: 0.92rem;
+    }
+
+    @keyframes pageEnter {
+      from { opacity: 0.92; }
+      to { opacity: 1; }
+    }
+
+    @keyframes contentFade {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-24px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1100px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links {
+        margin-left: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .services-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand-name {
+        font-size: 1.4rem;
+      }
+
+      .services-section {
+        padding: 55px 16px 60px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: auto;
+      }
+
+      .discord-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-transition" id="pageTransition"></div>
+
+  <div class="page-content">
+    <div id="navbar"></div>
+
+    <script>
+      fetch("navbar.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+
+    <section class="services-section">
+      <div class="services-header">
+        <h1>Our <span>Services</span></h1>
+        <p>Select a category and explore Zyro Cloud services with a premium, smooth and modern experience.</p>
+      </div>
+
+      <div class="services-layout">
+        <aside class="sidebar">
+          <h3>Categories</h3>
+
+          <button class="category-btn active" data-category="all">All Services</button>
+
+          <button class="category-btn" data-category="minecraft" id="minecraftMainBtn">Minecraft</button>
+          <div class="sub-category-box" id="minecraftSubCategory">
+            <a href="intel-plans.html" class="sub-category-btn" data-category="minecraft-intel">Intel Servers</a>
+            <a href="amd-plans.html" class="sub-category-btn" data-category="minecraft-amd">AMD Servers</a>
+          </div>
+
+          <button class="category-btn" data-category="vps" id="vpsMainBtn">VPS</button>
+          <div class="sub-category-box" id="vpsSubCategory">
+            <a href="intel-vps.html" class="sub-category-btn" data-category="vps-intel">Intel VPS</a>
+            <a href="amd-vps.html" class="sub-category-btn" data-category="vps-amd">AMD VPS</a>
+          </div>
+
+          <a href="bot-hosting-plans.html" class="category-btn">Bot Plans</a>
+          <a href="web-hosting-plans.html" class="category-btn">Web Hosting</a>
+        </aside>
+
+        <div class="services-content">
+          <div class="services-grid" id="servicesGrid">
+
+            <!-- Intel Minecraft -->
+            <div class="service-card" data-category="minecraft minecraft-intel" onclick="location.href='intel-plans.html'" style="cursor:pointer;">
+              <div class="service-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <h3>Intel Minecraft Servers</h3>
+              <p>Stable Minecraft hosting powered by Intel-based hardware for smooth gameplay, strong multi-user performance, and reliable uptime.</p>
+              <div class="service-badges">
+                <span class="badge">Intel CPUs</span>
+                <span class="badge">Low Latency</span>
+                <span class="badge">Game Ready</span>
+              </div>
+            </div>
+
+            <!-- AMD Minecraft -->
+            <div class="service-card" data-category="minecraft minecraft-amd" onclick="location.href='amd-plans.html'" style="cursor:pointer;">
+              <div class="service-icon">
+                <i class="fas fa-fire"></i>
+              </div>
+              <h3>AMD Minecraft Servers</h3>
+              <p>High-performance AMD powered Minecraft hosting designed for better speed, fast chunk loading, and excellent mod/plugin support.</p>
+              <div class="service-badges">
+                <span class="badge">AMD Ryzen</span>
+                <span class="badge">High Performance</span>
+                <span class="badge">Fast Nodes</span>
+              </div>
+            </div>
+
+            <!-- Intel VPS -->
+            <div class="service-card" data-category="vps vps-intel" onclick="location.href='intel-vps.html'" style="cursor:pointer;">
+              <div class="service-icon">
+                <i class="fas fa-server"></i>
+              </div>
+              <h3>Intel VPS Hosting</h3>
+              <p>Reliable Intel Xeon powered VPS servers with strong stability, full root access, and consistent performance for websites, bots, and production workloads.</p>
+              <div class="service-badges">
+                <span class="badge">Intel Xeon</span>
+                <span class="badge">ECC RAM</span>
+                <span class="badge">Stable Nodes</span>
+              </div>
+            </div>
+
+            <!-- AMD VPS -->
+            <div class="service-card" data-category="vps vps-amd" onclick="location.href='amd-vps.html'" style="cursor:pointer;">
+              <div class="service-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3>AMD VPS Hosting</h3>
+              <p>High performance AMD powered VPS servers built for faster workloads, better clock speeds, and smooth performance for gaming, apps, and heavy usage.</p>
+              <div class="service-badges">
+                <span class="badge">AMD Ryzen</span>
+                <span class="badge">High Performance</span>
+                <span class="badge">Fast Compute</span>
+              </div>
+            </div>
+
+            <!-- Bot Hosting -->
+            <div class="service-card" data-category="bot" onclick="location.href='bot-hosting-plans.html'" style="cursor:pointer;">
+              <div class="service-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h3>Bot Hosting</h3>
+              <p>Keep your Discord bots and automation tools online 24/7 with stable uptime, optimized performance, and easy deployment.</p>
+              <div class="service-badges">
+                <span class="badge">24/7 Online</span>
+                <span class="badge">Discord Ready</span>
+                <span class="badge">Automation</span>
+              </div>
+            </div>
+
+            <!-- Web Hosting -->
+            <div class="service-card" data-category="web" onclick="location.href='web-hosting-plans.html'" style="cursor:pointer;">
+              <div class="service-icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <h3>Web Hosting</h3>
+              <p>Fast hosting for websites, landing pages, business sites, client panels, and custom web applications with smooth performance.</p>
+              <div class="service-badges">
+                <span class="badge">Fast Loading</span>
+                <span class="badge">Secure</span>
+                <span class="badge">Modern Web</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="empty-state" id="emptyState">
+            No services found in this category.
+          </div>
+
+          <div class="footer-note">
+            Zyro Cloud — Premium hosting solutions for gaming, bots, web, and VPS needs.
+          </div>
+        </div>
+      </div>
+
+      <div id="footer"></div>
+    </section>
+  </div>
+
+  <script>
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const subCategoryButtons = document.querySelectorAll('.sub-category-btn');
+    const cards = document.querySelectorAll('.service-card');
+    const minecraftMainBtn = document.getElementById('minecraftMainBtn');
+    const minecraftSubCategory = document.getElementById('minecraftSubCategory');
+    const vpsMainBtn = document.getElementById('vpsMainBtn');
+    const vpsSubCategory = document.getElementById('vpsSubCategory');
+    const emptyState = document.getElementById('emptyState');
+    const transition = document.getElementById('pageTransition');
+
+    function clearActiveButtons() {
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      subCategoryButtons.forEach(btn => btn.classList.remove('active'));
+    }
+
+    function filterCards(category) {
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const categories = card.dataset.category.split(' ');
+        if (category === 'all' || categories.includes(category)) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (visibleCount === 0) {
+        emptyState.classList.add('show');
+      } else {
+        emptyState.classList.remove('show');
+      }
+    }
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+
+        clearActiveButtons();
+        button.classList.add('active');
+
+        if (category === 'minecraft') {
+          minecraftSubCategory.classList.add('show');
+          vpsSubCategory.classList.remove('show');
+          filterCards('minecraft');
+        } else if (category === 'vps') {
+          vpsSubCategory.classList.add('show');
+          minecraftSubCategory.classList.remove('show');
+          filterCards('vps');
+        } else {
+          minecraftSubCategory.classList.remove('show');
+          vpsSubCategory.classList.remove('show');
+          filterCards(category);
+        }
+      });
+    });
+
+    subCategoryButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        const category = button.dataset.category;
+
+        clearActiveButtons();
+        button.classList.add('active');
+
+        if (category.startsWith('minecraft')) {
+          minecraftMainBtn.classList.add('active');
+          minecraftSubCategory.classList.add('show');
+          vpsSubCategory.classList.remove('show');
+        }
+
+        if (category.startsWith('vps')) {
+          vpsMainBtn.classList.add('active');
+          vpsSubCategory.classList.add('show');
+          minecraftSubCategory.classList.remove('show');
+        }
+
+        filterCards(category);
+      });
+    });
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        transition.classList.add("loaded");
+      }, 120);
+    });
+
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+
+      if (
+        href &&
+        !href.startsWith('#') &&
+        !href.startsWith('javascript:') &&
+        !link.hasAttribute('target') &&
+        !href.includes('mailto:') &&
+        !href.includes('tel:')
+      ) {
+        link.addEventListener('click', function(e) {
+          const url = this.href;
+
+          if (url && url !== window.location.href) {
+            e.preventDefault();
+            document.body.classList.add('page-exit');
+            transition.classList.remove('loaded');
+
+            setTimeout(() => {
+              window.location.href = url;
+            }, 500);
+          }
+        });
+      }
+    });
+
+    filterCards('all');
+  </script>
+
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+</body>
+</html>

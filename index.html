@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zyro Cloud - Premium Hosting</title>
+  <link rel="icon" type="image/png" href="https://zyrocloud.site/favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#05070d;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:90%;
+      max-width:1250px;
+      margin:auto;
+    }
+
+    .bg{
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(112, 75, 255, 0.22), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.15), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(106, 0, 255, 0.13), transparent 30%),
+        linear-gradient(180deg,#04050a 0%, #090c14 100%);
+    }
+
+    .grid{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.35));
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:999;
+      background:rgba(8,10,16,0.78);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background: #00ff88;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ff88;
+      animation: pulseGreen 1.5s infinite;
+    }
+
+    .live-text {
+      font-size: 14px;
+      color: #00ff88;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+@keyframes pulseGreen {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #00ff88;
+  }
+  50% {
+    transform: scale(1.4);
+    box-shadow: 0 0 18px #00ff88;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #00ff88;
+  }
+}
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:24px;
+      font-weight:800;
+      letter-spacing:0.5px;
+    }
+
+    .brand img{
+      width:42px;
+      height:42px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 16px rgba(255,255,255,0.18));
+    }
+
+    .brand span{
+      background:linear-gradient(90deg,#ffffff,#bfc9ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+
+    .nav-links a{
+      color:#d9deee;
+      font-size:15px;
+      transition:0.3s ease;
+    }
+
+    .nav-links a:hover{
+      color:#fff;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 22px;
+      border-radius:14px;
+      font-weight:600;
+      transition:0.3s ease;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      color:white;
+      box-shadow:0 10px 30px rgba(124,58,237,0.35);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 40px rgba(124,58,237,0.45);
+    }
+
+    .btn-outline{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.04);
+      color:#fff;
+    }
+
+    .btn-outline:hover{
+      background:rgba(255,255,255,0.08);
+      transform:translateY(-3px);
+    }
+
+    .hero{
+      padding:90px 0 65px;
+    }
+
+    .hero-wrap{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:9px 15px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.04);
+      color:#d3d9ea;
+      font-size:13px;
+      margin-bottom:22px;
+      animation:fadeUp 0.8s ease forwards;
+    }
+
+    .hero h1{
+      font-size:60px;
+      line-height:1.06;
+      margin-bottom:18px;
+      font-weight:800;
+      opacity:0;
+      animation:fadeUp 0.9s ease forwards;
+      animation-delay:0.1s;
+    }
+
+    .hero h1 .gradient{
+      background:linear-gradient(90deg,#8b5cf6,#00d5ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      color:#b6bdd1;
+      font-size:17px;
+      line-height:1.85;
+      max-width:650px;
+      margin-bottom:28px;
+      opacity:0;
+      animation:fadeUp 0.9s ease forwards;
+      animation-delay:0.2s;
+    }
+
+    .hero-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-bottom:28px;
+      opacity:0;
+      animation:fadeUp 0.9s ease forwards;
+      animation-delay:0.3s;
+    }
+
+    .hero-stats{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      opacity:0;
+      animation:fadeUp 0.9s ease forwards;
+      animation-delay:0.4s;
+    }
+
+    .stat{
+      min-width:155px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 35px rgba(0,0,0,0.2);
+    }
+
+    .stat h3{
+      font-size:23px;
+      margin-bottom:4px;
+    }
+
+    .stat p{
+      font-size:13px;
+      color:#aab2c9;
+      margin:0;
+      line-height:1.5;
+    }
+
+    .hero-card{
+      position:relative;
+      border-radius:30px;
+      padding:26px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 25px 70px rgba(0,0,0,0.35);
+      overflow:hidden;
+      animation:floatCard 5s ease-in-out infinite;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-60px;
+      top:-60px;
+      background:radial-gradient(circle, rgba(124,58,237,0.42), transparent 70%);
+      filter:blur(10px);
+    }
+
+    .panel{
+      position:relative;
+      background:#090d16;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:22px;
+      padding:20px;
+      z-index:2;
+    }
+
+    .panel-top{
+      display:flex;
+      gap:8px;
+      margin-bottom:16px;
+    }
+
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#2c3244;
+    }
+
+    .line{
+      height:14px;
+      border-radius:10px;
+      background:linear-gradient(90deg, rgba(139,92,246,0.4), rgba(0,213,255,0.22));
+      margin-bottom:12px;
+    }
+
+    .line.l1{width:100%;}
+    .line.l2{width:78%;}
+    .line.l3{width:52%;}
+
+    .mini-cards{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .mini-card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      padding:16px;
+      transition:0.3s ease;
+    }
+
+    .mini-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(139,92,246,0.35);
+    }
+
+    .mini-card h4{
+      font-size:15px;
+      margin-bottom:8px;
+    }
+
+    .mini-card p{
+      font-size:13px;
+      line-height:1.7;
+      color:#aab2c9;
+    }
+
+    section{
+      padding:75px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 45px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      margin-bottom:12px;
+    }
+
+    .section-title p{
+      color:#aab2c9;
+      line-height:1.8;
+      font-size:16px;
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .feature-card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+      padding:26px;
+      transition:0.3s ease;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-7px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.22);
+    }
+
+    .feature-card h3{
+      font-size:20px;
+      margin-bottom:12px;
+    }
+
+    .feature-card p{
+      color:#aab2c9;
+      line-height:1.85;
+      font-size:14px;
+    }
+
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .price-card{
+      position:relative;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:26px;
+      padding:30px;
+      transition:0.35s ease;
+      overflow:hidden;
+    }
+
+    .price-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 20px 50px rgba(0,0,0,0.28);
+    }
+
+    .price-card.popular{
+      border-color:rgba(124,58,237,0.55);
+      box-shadow:0 0 0 1px rgba(124,58,237,0.16), 0 25px 60px rgba(124,58,237,0.12);
+    }
+
+    .tag{
+      position:absolute;
+      top:18px;
+      right:18px;
+      padding:7px 12px;
+      font-size:12px;
+      font-weight:600;
+      border-radius:999px;
+      background:linear-gradient(135deg,#7c3aed,#00d5ff);
+    }
+
+    .price-card h3{
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .price{
+      font-size:42px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .price span{
+      font-size:15px;
+      font-weight:500;
+      color:#aab2c9;
+    }
+
+    .price-desc{
+      font-size:14px;
+      color:#b8bfd3;
+      line-height:1.75;
+      margin-bottom:18px;
+    }
+
+    .price-list{
+      list-style:none;
+      margin:22px 0 28px;
+    }
+
+    .price-list li{
+      padding:11px 0;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      color:#dce2f3;
+      font-size:14px;
+    }
+
+    .locations-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:18px;
+    }
+
+    .location{
+      text-align:center;
+      padding:18px 12px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.3s ease;
+      font-weight:600;
+      color:#dde3f4;
+    }
+
+    .location:hover{
+      transform:translateY(-5px);
+      border-color:rgba(0,213,255,0.3);
+    }
+
+    .faq-wrap{
+      max-width:900px;
+      margin:auto;
+      display:grid;
+      gap:16px;
+    }
+
+    .faq-item{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.3s ease;
+    }
+
+    .faq-item:hover{
+      border-color:rgba(124,58,237,0.35);
+    }
+
+    .faq-question{
+      width:100%;
+      background:none;
+      border:none;
+      outline:none;
+      color:white;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:22px 22px;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      text-align:left;
+    }
+
+    .faq-question span:last-child{
+      font-size:22px;
+      transition:0.3s ease;
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.35s ease, padding 0.35s ease;
+      padding:0 22px;
+      color:#b4bbcf;
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    .faq-item.active .faq-answer{
+      max-height:180px;
+      padding:0 22px 20px;
+    }
+
+    .faq-item.active .faq-question span:last-child{
+      transform:rotate(45deg);
+    }
+
+    .cta-box{
+      padding:48px 28px;
+      text-align:center;
+      border-radius:30px;
+      background:linear-gradient(135deg, rgba(124,58,237,0.16), rgba(0,213,255,0.12));
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 20px 55px rgba(0,0,0,0.2);
+    }
+
+    .cta-box h2{
+      font-size:38px;
+      margin-bottom:12px;
+    }
+
+    .cta-box p{
+      max-width:720px;
+      margin:0 auto 24px;
+      color:#b6bdd1;
+      line-height:1.8;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(35px);
+      transition:all 0.8s ease;
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(25px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes floatCard{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-10px);}
+      100%{transform:translateY(0px);}
+    }
+
+    @media(max-width:1150px){
+      .hero-wrap,
+      .features-grid,
+      .pricing-grid{
+        grid-template-columns:1fr;
+      }
+
+      .locations-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .hero h1{
+        font-size:48px;
+      }
+    }
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 5px #8b5cf6; }
+  50% { text-shadow: 0 0 20px #00d5ff; }
+  100% { text-shadow: 0 0 5px #8b5cf6; }
+}
+
+    @media(max-width:768px){
+      .nav-links{
+        display:none;
+      }
+
+      .hero{
+        padding:70px 0 45px;
+      }
+
+      .hero h1{
+        font-size:36px;
+      }
+
+      .section-title h2,
+      .cta-box h2{
+        font-size:30px;
+      }
+
+      .locations-grid,
+      .mini-cards{
+        grid-template-columns:1fr;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+      
+      /* ===== OWNERS SECTION ===== */
+
+.owners {
+  text-align: center;
+  padding: 80px 20px;
+  color: white;
+}
+
+.owners h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.owners-subtext {
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+/* Container */
+.owners-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Card */
+.owner-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 25px;
+  width: 260px;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+/* 🔥 Animated Gradient Border */
+.owner-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #00e0ff, #8a2be2, #00e0ff);
+  background-size: 300% 300%;
+  animation: borderGlow 6s linear infinite;
+  z-index: -1;
+}
+
+/* Inner overlay */
+.owner-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: rgba(10, 10, 20, 0.85);
+  z-index: -1;
+}
+
+/* Animation */
+@keyframes borderGlow {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
+}
+
+/* ===== OWNERS SECTION ===== */
+
+.owners {
+  text-align: center;
+  padding: 80px 20px;
+  color: white;
+}
+
+.owners h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.owners-subtext {
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+.owners-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.owner-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 25px;
+  width: 260px;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.owner-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #00e0ff, #8a2be2, #00e0ff);
+  background-size: 300% 300%;
+  animation: borderGlow 6s linear infinite;
+  z-index: -1;
+}
+
+.owner-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: rgba(10, 10, 20, 0.85);
+  z-index: -1;
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
+}
+
+.owner-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 200, 255, 0.4);
+}
+
+.owner-card img {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid rgba(0, 200, 255, 0.5);
+  object-fit: cover;
+}
+
+.owner-card h3 {
+  margin: 10px 0 5px;
+}
+
+.role {
+  font-size: 13px;
+  color: #00e0ff;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.owner-card p {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(45deg, #00e0ff, #8a2be2);
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .owner-card {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+      
+      /* Reviews Section */
+.reviews-section {
+  padding: 90px 20px;
+  background: linear-gradient(180deg, #0b1020 0%, #11172a 100%);
+}
+
+.reviews-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid rgba(0, 255, 200, 0.25);
+  border-radius: 999px;
+  background: rgba(0, 255, 200, 0.08);
+  color: #7fffd4;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.section-header h2 {
+  font-size: 38px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.section-header p {
+  color: #aab3c5;
+  font-size: 16px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.review-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  transition: 0.35s ease;
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, rgba(0,255,200,0.35), rgba(0,140,255,0.25), rgba(153,69,255,0.3));
+  opacity: 0;
+  transition: 0.35s ease;
+  z-index: 0;
+  border-radius: 24px;
+}
+
+.review-card:hover::before {
+  opacity: 1;
+}
+
+.review-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: #11172a;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.review-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.review-card:hover {
+  transform: translateY(-8px);
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.review-top img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0, 255, 200, 0.35);
+}
+
+.review-top h3 {
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+}
+
+.review-top span {
+  color: #9aa4ba;
+  font-size: 14px;
+}
+
+.stars {
+  color: #ffd95a;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.review-card p {
+  color: #d5dbea;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+      
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+
+  <div id="navbar"></div>
+
+  <script>
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    });
+  </script>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-wrap">
+        <div>
+          <div class="badge">⚡ Premium Hosting • Fast Setup • Smooth Experience</div>
+          <h1>Power Your Servers With <span class="gradient">Zyro Cloud</span></h1>
+          <p>
+            Premium hosting for Minecraft servers, VPS, VDS, Bot hosting, and Domains.
+            Built for speed, uptime, modern design, and a clean professional experience.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="services.html" class="btn btn-primary">Get Started</a>
+            <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="btn btn-outline">Join Discord</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <h3>99.9%</h3>
+              <p>Uptime Guarantee</p>
+            </div>
+            <div class="stat">
+              <h3>24/7</h3>
+              <p>Support & Assistance</p>
+            </div>
+            <div class="stat">
+              <h3>6+</h3>
+              <p>Global Locations</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="panel">
+            <div class="panel-top">
+              <div class="live-indicator"></div>
+              <div class="live-dot"></div>
+              <div class="live-text"></div>
+            </div>
+
+            <div class="line l1"></div>
+            <div class="line l2"></div>
+            <div class="line l3"></div>
+
+            <div class="mini-cards">
+              <div class="mini-card">
+                <h4>Minecraft Hosting</h4>
+                <p>Low latency nodes with smooth performance for survival, modpacks, and minigames.</p>
+              </div>
+              <div class="mini-card">
+                <h4>Bot Hosting</h4>
+                <p>Reliable hosting for Discord bots, automation tools, and custom apps.</p>
+              </div>
+              <div class="mini-card">
+                <h4>Cloud VPS</h4>
+                <p>Root access, scalable resources, and stable performance for all workloads.</p>
+              </div>
+              <div class="mini-card">
+                <h4>Domain Services</h4>
+                <p>Launch your brand with premium domains and easy management.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- OWNERS SECTION -->
+<section class="owners">
+  <h2>Meet The Owners</h2>
+  <p class="owners-subtext">The people behind Zyro Cloud 🚀</p>
+
+  <div class="owners-container">
+
+    <!-- Owner 1 -->
+    <div class="owner-card">
+      <div class="badge">Founder</div>
+      <img src="owner1.png" alt="Owner 2">
+      <h3>Kartik Prajapat</h3>
+      <span class="role">Founder</span>
+      <p>Leading Zyro Cloud with vision and innovation.</p>
+    </div>
+
+    <!-- Owner 2 -->
+    <div class="owner-card">
+      <div class="badge">Founder</div>  
+      <img src="owner2.png" alt="Owner 1">
+      <h3>Shubham</h3>
+      <span class="role">Founder</span>
+      <p>Handling management and operations smoothly.</p>
+    </div>
+
+    <!-- Owner 3 -->
+    <div class="owner-card">
+      <img src="owner3.png" alt="Owner 3">
+      <h3>Dhruv</h3>
+      <span class="role">Co-Founder</span>
+      <p>Providing support and backend development.</p>
+    </div>
+
+    <!-- Owner 4 -->
+    <div class="owner-card">
+      <img src="owner4.png" alt="Owner 4">
+      <h3>Dev Rai</h3>
+      <span class="role">Developer</span>
+      <p>Helping Zyro Cloud grow with strong teamwork.</p>
+    </div>
+
+  </div>
+</section>
+    
+  <section id="features" class="reveal">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose Zyro Cloud?</h2>
+        <p>
+          Fast infrastructure, clean experience, strong support, and premium visuals designed to make your hosting feel next level.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>⚡ High Performance</h3>
+          <p>Fast CPUs, optimized nodes, and stable infrastructure for better response times and smoother hosting.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🔒 Secure Environment</h3>
+          <p>Reliable network protection and a stable platform architecture designed for modern workloads.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🛠 Easy Control</h3>
+          <p>Simple management flow for deploying services, handling upgrades, and controlling your resources.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🌍 Global Locations</h3>
+          <p>Choose locations near your users for reduced ping, better loading speed, and improved experience.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>💬 Helpful Support</h3>
+          <p>Responsive support for setup guidance, service help, and solving common issues quickly.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>📈 Easy Scaling</h3>
+          <p>Start small and upgrade later as your community, application, or server grows larger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="reveal">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Common questions jo users aksar puchte hain.
+        </p>
+      </div>
+
+      <div class="faq-wrap">
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>What services does Zyro Cloud provide?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            Zyro Cloud Minecraft hosting, VPS hosting, bot hosting, VDS solutions, aur domain services provide karta hai.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How fast is the setup process?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            Most services quickly deploy ho jati hain. Exact time service type aur custom setup par depend karta hai.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do you offer support for Discord bots and Minecraft servers?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            Haan, bot hosting aur Minecraft servers dono ke liye hosting available hai, aur support bhi diya ja sakta hai.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How can I order a plan?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            Tum Discord join karke direct contact kar sakte ho aur apne required plan ke hisab se order place kar sakte ho.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+    <!-- Reviews Section -->
+<section class="reviews-section">
+  <div class="reviews-container">
+    <div class="section-header">
+      <span class="section-tag">Client Reviews</span>
+      <h2>What Our Clients Say</h2>
+      <p>Trusted by gamers, creators, and communities for fast and reliable hosting.</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top">
+          <img src="review1.png" alt="Client 1">
+          <div>
+            <h3>Rohit Sharma</h3>
+            <span>Minecraft Server User</span>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>
+          Best hosting experience so far. Server performance is smooth, support is fast,
+          and setup was very easy. Highly recommended.
+        </p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <img src="review2.png" alt="Client 2">
+          <div>
+            <h3>Ayaan Khan</h3>
+            <span>Discord Bot Hosting</span>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>
+          My bot runs 24/7 without issues. The panel is easy to use and the speed is amazing.
+          Definitely worth it.
+        </p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <img src="review3.png" alt="Client 3">
+          <div>
+            <h3>Priyansh Verma</h3>
+            <span>VPS Customer</span>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>
+          Very good uptime and premium feel. Pricing is also fair. I shifted from another
+          host and this feels much better.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+    
+  <section class="reveal">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to Launch With Zyro Cloud?</h2>
+        <p>
+          Fast, modern, and premium hosting experience ke saath apna next project aaj hi launch karo.
+        </p>
+        <a href="https://discord.gg/yVrM9VtY5N" target="_blank" class="btn btn-primary">Join Our Discord</a>
+      </div>
+    </div>
+      
+    <div id="footer"></div>
+      
+  </section>
+
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', () => {
+        faqItems.forEach(other => {
+          if (other !== item) other.classList.remove('active');
+        });
+        item.classList.toggle('active');
+      });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - 80) {
+          el.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+    
+    <script>
+fetch("footer.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+    
+</body>
+</html>
+
